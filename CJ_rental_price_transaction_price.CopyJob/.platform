@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "CopyJob",
+    "displayName": "CJ_rental_price_transaction_price"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "5f1e12ce-1b91-873e-4d70-182be89cd290"
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "properties": {
+    "jobMode": "Batch",
+    "source": {
+      "type": "Excel",
+      "connectionSettings": {
+        "type": "HttpServer",
+        "externalReferences": {
+          "connection": "79009e1e-77df-4c5c-b73f-4c7c45e41c07"
+        }
+      }
+    },
+    "destination": {
+      "type": "LakehouseTable",
+      "connectionSettings": {
+        "type": "Lakehouse",
+        "typeProperties": {
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "artifactId": "69cbdfd0-1a63-b004-4abd-97d5a59ea1b9",
+          "rootFolder": "Tables"
+        }
+      }
+    },
+    "policy": {
+      "timeout": "0.12:00:00",
+      "retry": 0
+    }
+  },
+  "activities": [
+    {
+      "id": "bbb5e6ee-4963-4530-9622-89d1b3a03803",
+      "properties": {
+        "source": {
+          "datasetSettings": {
+            "sheetName": "Sheet1",
+            "location": {
+              "type": "HttpServerLocation"
+            },
+            "firstRowAsHeader": true
+          },
+          "storeSettings": {
+            "requestMethod": "GET"
+          }
+        },
+        "destination": {
+          "partitionOption": "None",
+          "writeBehavior": "Overwrite",
+          "datasetSettings": {
+            "schema": "dbo",
+            "table": "rental_price_transaction_price"
+          },
+          "applyVOrder": false,
+          "enableTimestampNtz": false,
+          "enableChangeDataFeed": false
+        },
+        "enableStaging": false,
+        "translator": {
+          "type": "TabularTranslator",
+          "mappings": [
+            {
+              "source": {
+                "name": "Year",
+                "type": "String",
+                "physicalType": "String"
+              },
+              "destination": {
+                "name": "Year",
+                "physicalType": "integer"
+              }
+            },
+            {
+              "source": {
+                "name": "Quarter",
+                "type": "String",
+                "physicalType": "String"
+              },
+              "destination": {
+                "name": "Quarter",
+                "physicalType": "integer"
+              }
+            },
+            {
+              "source": {
+                "name": "City",
+                "type": "String",
+                "physicalType": "String"
+              },
+              "destination": {
+                "name": "City",
+                "physicalType": "string"
+              }
+            },
+            {
+              "source": {
+                "name": "Rent_Index",
+                "type": "String",
+                "physicalType": "String"
+              },
+              "destination": {
+                "name": "Rent_Index",
+                "physicalType": "double"
+              }
+            },
+            {
+              "source": {
+                "name": "Sales_Index",
+                "type": "String",
+                "physicalType": "String"
+              },
+              "destination": {
+                "name": "Sales_Index",
+                "physicalType": "double"
+              }
+            },
+            {
+              "source": {
+                "name": "Inflation_adjusted",
+                "type": "String",
+                "physicalType": "String"
+              },
+              "destination": {
+                "name": "Inflation_adjusted",
+                "physicalType": "integer"
+              }
+            }
+          ]
+        },
+        "typeConversionSettings": {
+          "typeConversion": {
+            "allowDataTruncation": true,
+            "treatBooleanAsNumber": false
+          }
+        }
+      }
+    }
+  ]
+}
